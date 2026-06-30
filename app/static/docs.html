@@ -156,6 +156,131 @@
     .swagger-ui .models-control, .swagger-ui .model-toggle { background: transparent !important; color: #a78bfa !important; }
     button.model-box-control { background: transparent !important; border: none !important; }
     .swagger-ui span.model-title__text { font-weight: 600 !important; }
+
+
+    /* Tab bar (Parameters / Schema) */
+    .swagger-ui .tab { background: #16161f !important; border-bottom: 1px solid #2a2a3a !important; }
+    .swagger-ui .tab li { background: transparent !important; }
+    .swagger-ui .tab li button.tablinks { color: #6b6b8a !important; background: transparent !important; }
+    .swagger-ui .tab li.active button.tablinks,
+    .swagger-ui .tab li button.tablinks.active { color: #34d399 !important; border-bottom: 2px solid #34d399 !important; }
+
+    /* Request body section wrapper */
+    .swagger-ui .opblock-section-header {
+      background: #16161f !important;
+      box-shadow: none !important;
+      border-bottom: 1px solid #2a2a3a !important;
+    }
+    .swagger-ui .opblock-section-header h4,
+    .swagger-ui .opblock-section-header label,
+    .swagger-ui .opblock-section-header > label > span {
+      color: #e8e8f0 !important;
+    }
+    .swagger-ui .opblock-section-header select {
+      background: #0a0a0f !important;
+      border: 1px solid #2a2a3a !important;
+      color: #34d399 !important;
+    }
+
+    /* Cancel button */
+    .swagger-ui .btn.cancel,
+    .swagger-ui button.btn.cancel {
+      background: linear-gradient(135deg,#7f1d1d,#ef4444) !important;
+      color: white !important;
+      border: none !important;
+    }
+
+    /* Parameters area / "No parameters" text */
+    .swagger-ui .parameters-container,
+    .swagger-ui .opblock-description-wrapper,
+    .swagger-ui .opblock-external-docs-wrapper,
+    .swagger-ui .opblock-title_normal {
+      background: #0f0f18 !important;
+      color: #6b6b8a !important;
+    }
+
+    /* CodeMirror request body editor */
+    .swagger-ui .body-param textarea,
+    .swagger-ui textarea.body-param__text,
+    .swagger-ui .CodeMirror,
+    .swagger-ui .CodeMirror-wrap {
+      background: #0a0a0f !important;
+      border: 1px solid #2a2a3a !important;
+      border-radius: 8px !important;
+      color: #34d399 !important;
+    }
+    .swagger-ui .CodeMirror-gutters { background: #0a0a0f !important; border-right: 1px solid #2a2a3a !important; }
+    .swagger-ui .CodeMirror pre { color: #e8e8f0 !important; }
+    .swagger-ui .cm-string { color: #6ee7b7 !important; }
+    .swagger-ui .cm-property { color: #a78bfa !important; }
+    .swagger-ui .cm-punctuation { color: #6b6b8a !important; }
+
+    /* ===== NUCLEAR FIX: every model row, however nested ===== */
+    .swagger-ui .model-box,
+    .swagger-ui .model-toggle,
+    .swagger-ui .model-jump-to-path,
+    .swagger-ui .model .property,
+    .swagger-ui .model-title,
+    .swagger-ui span.model-title,
+    .swagger-ui .model-hint,
+    .swagger-ui td.col,
+    .swagger-ui .model > *,
+    .swagger-ui .brace-open,
+    .swagger-ui .brace-close,
+    .swagger-ui .inner-object,
+    .swagger-ui .model .property-row {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    /* Every single span/div anywhere inside the Schemas section forced transparent */
+    .swagger-ui section.models *,
+    .swagger-ui section.models *::before,
+    .swagger-ui section.models *::after {
+      background-color: transparent !important;
+      background-image: none !important;
+    }
+
+    /* Whole schemas section base */
+    .swagger-ui section.models {
+      background: #14141d !important;
+      border: 1px solid #2a2a3a !important;
+      border-radius: 16px !important;
+    }
+
+    /* Top-level schema blocks get a colored left border + faint tint, alternating 3 colors */
+    .swagger-ui .model-container {
+      background: rgba(255,255,255,0.02) !important;
+      border-radius: 10px !important;
+      margin: 10px !important;
+      padding: 10px 14px !important;
+    }
+    .swagger-ui .model-container:nth-of-type(3n+1) { border-left: 3px solid #34d399 !important; }
+    .swagger-ui .model-container:nth-of-type(3n+2) { border-left: 3px solid #a78bfa !important; }
+    .swagger-ui .model-container:nth-of-type(3n+3) { border-left: 3px solid #60a5fa !important; }
+
+    /* Text colors for clarity */
+    .swagger-ui .model-title,
+    .swagger-ui span.model-title__text { color: #e8e8f0 !important; font-weight: 600 !important; }
+    .swagger-ui .model .property { color: #9090b0 !important; }
+    .swagger-ui .prop-name { color: #a78bfa !important; }
+    .swagger-ui .prop-type { color: #34d399 !important; }
+    .swagger-ui .prop-format { color: #60a5fa !important; }
+    .swagger-ui .star { color: #f87171 !important; } /* required field asterisk */
+
+    /* "Collapse all" / "Expand all" links */
+    .swagger-ui .model-box-control,
+    .swagger-ui span[class*="model-box-control"] {
+      color: #6b6b8a !important;
+      font-size: 11px !important;
+      text-transform: none !important;
+    }
+    .swagger-ui .model-box-control:hover { color: #a78bfa !important; }
+
+    /* Caret/arrow icons */
+    .swagger-ui .model-toggle::after {
+      filter: invert(70%) sepia(40%) saturate(900%) hue-rotate(220deg) !important;
+    }
   </style>
 </head>
 <body>
