@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>URL Shortener - API Docs</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { background: #0a0a0f !important; margin: 0; color: #e8e8f0 !important; }
+    body::before { content: ""; position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, rgba(124,110,255,0.08), transparent 70%); pointer-events: none; z-index: 0; }
+
+    /* Force ALL white backgrounds to dark */
+    .swagger-ui,
+    .swagger-ui .wrapper,
+    .swagger-ui .opblock-body,
+    .swagger-ui .opblock-description-wrapper,
+    .swagger-ui .response-col_description,
+    .swagger-ui table thead tr td,
+    .swagger-ui table thead tr th,
+    .swagger-ui .parameter__name,
+    .swagger-ui .parameter__type,
+    .swagger-ui .parameter__deprecated,
+    .swagger-ui .parameter__in,
+    .swagger-ui .tab,
+    .swagger-ui .tabitem,
+    .swagger-ui .model-title,
+    .swagger-ui .model,
+    .swagger-ui .prop-type,
+    .swagger-ui .renderedMarkdown p,
+    .swagger-ui .markdown p,
+    .swagger-ui .markdown li,
+    .swagger-ui .model-box,
+    .swagger-ui .models,
+    .swagger-ui section.models,
+    .swagger-ui .model-container,
+    .swagger-ui .model-box-control,
+    .swagger-ui .models-control,
+    .swagger-ui .response,
+    .swagger-ui .responses-inner,
+    .swagger-ui .response-controls,
+    .swagger-ui .scheme-container,
+    .swagger-ui .servers,
+    .swagger-ui .servers-title,
+    .swagger-ui .filter-container,
+    .swagger-ui .operation-filter-input,
+    .swagger-ui .body-param,
+    .swagger-ui .body-param__text,
+    .swagger-ui .highlight-code,
+    .swagger-ui .microlight { background: transparent !important; background-color: #0a0a0f !important; color: #e8e8f0 !important; }
+
+    /* Topbar */
+    .swagger-ui .topbar { background: linear-gradient(135deg,#13131e,#1a1a2e) !important; border-bottom: 1px solid #2a2a3a !important; box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important; }
+    .swagger-ui .topbar-wrapper img { display: none !important; }
+    .swagger-ui .topbar-wrapper::before { content: "URL Shortener API"; color: #a78bfa; font-size: 1.2rem; font-weight: 700; padding-left: 2rem; }
+
+    /* Info block */
+    .swagger-ui .info { background: transparent !important; }
+    .swagger-ui .info .title { color: #e8e8f0 !important; text-shadow: 0 0 30px rgba(124,110,255,0.3) !important; }
+    .swagger-ui .info .title small { background: linear-gradient(135deg,#7c6eff,#a78bfa) !important; border-radius: 6px !important; color: white !important; }
+    .swagger-ui .info p, .swagger-ui .info li { color: #6b6b8a !important; }
+    .swagger-ui a.nostyle, .swagger-ui a.nostyle:visited { color: #a78bfa !important; }
+
+    /* Operation blocks */
+    .swagger-ui .opblock { background: #16161f !important; border: 1px solid #2a2a3a !important; border-radius: 14px !important; margin-bottom: 12px !important; box-shadow: 0 8px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04) !important; transform: perspective(800px) rotateX(1deg) !important; transition: transform 0.2s, box-shadow 0.2s !important; overflow: hidden !important; }
+    .swagger-ui .opblock:hover { transform: perspective(800px) rotateX(0deg) translateY(-2px) !important; box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 20px rgba(124,110,255,0.1) !important; }
+    .swagger-ui .opblock .opblock-summary { background: transparent !important; }
+    .swagger-ui .opblock .opblock-body { background: #0f0f18 !important; }
+    .swagger-ui .opblock.opblock-post { border-color: rgba(52,211,153,0.3) !important; }
+    .swagger-ui .opblock.opblock-get { border-color: rgba(124,110,255,0.25) !important; }
+    .swagger-ui .opblock-summary-method { border-radius: 8px !important; font-weight: 700 !important; box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important; }
+    .swagger-ui .opblock.opblock-post .opblock-summary-method { background: linear-gradient(135deg,#059669,#34d399) !important; }
+    .swagger-ui .opblock.opblock-get .opblock-summary-method { background: linear-gradient(135deg,#5b45d4,#7c6eff) !important; }
+    .swagger-ui .opblock-summary-path { color: #e8e8f0 !important; font-family: monospace !important; }
+    .swagger-ui .opblock-summary-description { color: #6b6b8a !important; }
+    .swagger-ui .opblock-tag { border-bottom: 1px solid #2a2a3a !important; color: #a78bfa !important; font-weight: 600 !important; background: transparent !important; }
+    .swagger-ui .opblock-tag:hover { background: rgba(124,110,255,0.05) !important; }
+
+    /* Parameters table */
+    .swagger-ui table { background: transparent !important; }
+    .swagger-ui table tbody tr td { background: transparent !important; border-bottom: 1px solid #2a2a3a !important; color: #e8e8f0 !important; }
+    .swagger-ui table tbody tr:hover td { background: rgba(124,110,255,0.04) !important; }
+    .swagger-ui .col_header { color: #6b6b8a !important; background: transparent !important; }
+    .swagger-ui .parameter__name { color: #a78bfa !important; }
+    .swagger-ui .parameter__type { color: #34d399 !important; }
+    .swagger-ui .parameter__in { color: #6b6b8a !important; }
+
+    /* Schemas */
+    .swagger-ui section.models { background: #16161f !important; border: 1px solid #2a2a3a !important; border-radius: 14px !important; overflow: hidden !important; }
+    .swagger-ui section.models h4 { color: #a78bfa !important; background: transparent !important; }
+    .swagger-ui section.models .model-container { background: #0f0f18 !important; border-radius: 10px !important; margin: 8px !important; border: 1px solid #2a2a3a !important; }
+    .swagger-ui .model-title { color: #e8e8f0 !important; }
+    .swagger-ui .model { color: #e8e8f0 !important; }
+    .swagger-ui .prop-type { color: #34d399 !important; }
+    .swagger-ui .prop-format { color: #6b6b8a !important; }
+    .swagger-ui span.prop-name { color: #a78bfa !important; }
+
+    /* Buttons */
+    .swagger-ui .btn { background: linear-gradient(135deg,#5b45d4,#7c6eff) !important; border: none !important; border-radius: 8px !important; color: white !important; transition: all 0.2s !important; box-shadow: 0 4px 12px rgba(124,110,255,0.3) !important; }
+    .swagger-ui .btn:hover { transform: translateY(-1px) !important; box-shadow: 0 8px 20px rgba(124,110,255,0.4) !important; }
+    .swagger-ui .btn.execute { background: linear-gradient(135deg,#059669,#34d399) !important; box-shadow: 0 4px 12px rgba(52,211,153,0.3) !important; }
+    .swagger-ui .btn.cancel { background: linear-gradient(135deg,#7f1d1d,#ef4444) !important; }
+    .swagger-ui .copy-to-clipboard { background: #16161f !important; border: 1px solid #2a2a3a !important; border-radius: 6px !important; }
+    .swagger-ui .copy-to-clipboard button { background: transparent !important; }
+
+    /* Inputs */
+    .swagger-ui input[type=text],
+    .swagger-ui input[type=email],
+    .swagger-ui input[type=password],
+    .swagger-ui textarea,
+    .swagger-ui select { background: #0f0f18 !important; border: 1px solid #2a2a3a !important; border-radius: 8px !important; color: #e8e8f0 !important; }
+    .swagger-ui input:focus, .swagger-ui textarea:focus { border-color: #7c6eff !important; box-shadow: 0 0 0 3px rgba(124,110,255,0.15) !important; outline: none !important; }
+
+    /* Response */
+    .swagger-ui .responses-wrapper { background: #0f0f18 !important; border-radius: 10px !important; border: 1px solid #2a2a3a !important; }
+    .swagger-ui .response-col_status { color: #34d399 !important; font-weight: 700 !important; }
+    .swagger-ui .response-col_description { color: #e8e8f0 !important; }
+    .swagger-ui .live-responses-table .response { background: #0a0a0f !important; }
+
+    /* Code */
+    .swagger-ui pre, .swagger-ui code { background: #0a0a0f !important; border: 1px solid #2a2a3a !important; border-radius: 8px !important; color: #34d399 !important; }
+    .swagger-ui .highlight-code { background: #0a0a0f !important; }
+    .swagger-ui .microlight { background: #0a0a0f !important; color: #34d399 !important; }
+
+    /* Misc */
+    .swagger-ui a { color: #a78bfa !important; }
+    .swagger-ui .expand-methods svg, .swagger-ui .expand-operation svg { fill: #a78bfa !important; }
+    .swagger-ui .arrow { fill: #a78bfa !important; }
+    .swagger-ui hr { border-color: #2a2a3a !important; }
+    .swagger-ui .loading-container { background: #0a0a0f !important; }
+    .swagger-ui .auth-wrapper { background: #16161f !important; border: 1px solid #2a2a3a !important; border-radius: 14px !important; }
+    .swagger-ui .dialog-ux .modal-ux { background: #16161f !important; border: 1px solid #2a2a3a !important; }
+    .swagger-ui .dialog-ux .modal-ux-header { background: #13131e !important; border-bottom: 1px solid #2a2a3a !important; }
+    .swagger-ui .dialog-ux .modal-ux-header h3 { color: #e8e8f0 !important; }
+    .swagger-ui .scheme-container { background: #13131e !important; border-bottom: 1px solid #2a2a3a !important; box-shadow: none !important; }
+
+    /* Expand all buttons - 3 different colors */
+    .swagger-ui .model-container:nth-child(1) .model-box-control { background: rgba(52,211,153,0.15) !important; border: 1px solid rgba(52,211,153,0.3) !important; border-radius: 6px !important; color: #34d399 !important; }
+    .swagger-ui .model-container:nth-child(2) .model-box-control { background: rgba(124,110,255,0.15) !important; border: 1px solid rgba(124,110,255,0.3) !important; border-radius: 6px !important; color: #a78bfa !important; }
+    .swagger-ui .model-container:nth-child(3) .model-box-control { background: rgba(96,165,250,0.15) !important; border: 1px solid rgba(96,165,250,0.3) !important; border-radius: 6px !important; color: #60a5fa !important; }
+
+    /* Expand all button text */
+    .swagger-ui .model-box-control { cursor: pointer !important; padding: 3px 10px !important; border-radius: 6px !important; }
+
+    /* Schema item titles - 3 colors */
+    .swagger-ui .model-container:nth-child(1) .model-title { color: #34d399 !important; }
+    .swagger-ui .model-container:nth-child(2) .model-title { color: #a78bfa !important; }
+    .swagger-ui .model-container:nth-child(3) .model-title { color: #60a5fa !important; }
+
+    /* Schema container backgrounds - subtle 3 colors */
+    .swagger-ui .model-container:nth-child(1) { background: rgba(52,211,153,0.05) !important; border: 1px solid rgba(52,211,153,0.2) !important; border-radius: 10px !important; margin: 8px !important; }
+    .swagger-ui .model-container:nth-child(2) { background: rgba(124,110,255,0.05) !important; border: 1px solid rgba(124,110,255,0.2) !important; border-radius: 10px !important; margin: 8px !important; }
+    .swagger-ui .model-container:nth-child(3) { background: rgba(96,165,250,0.05) !important; border: 1px solid rgba(96,165,250,0.2) !important; border-radius: 10px !important; margin: 8px !important; }
+
+    /* Remove white from expand buttons specifically */
+    .swagger-ui .models-control, .swagger-ui .model-toggle { background: transparent !important; color: #a78bfa !important; }
+    button.model-box-control { background: transparent !important; border: none !important; }
+    .swagger-ui span.model-title__text { font-weight: 600 !important; }
+  </style>
+</head>
+<body>
+<div id="swagger-ui"></div>
+<script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+<script>
+window.onload = function() {
+  SwaggerUIBundle({
+    url: "/openapi.json",
+    dom_id: "#swagger-ui",
+    presets: [SwaggerUIBundle.presets.apis, SwaggerUIBundle.SwaggerUIStandalonePreset],
+    layout: "BaseLayout",
+    deepLinking: true
+  });
+}
+</script>
+</body>
+</html>

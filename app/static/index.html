@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>URL Shortener</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0f;color:#e8e8f0;font-family:system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center}
+body::before{content:"";position:fixed;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(124,110,255,0.15) 0%,transparent 70%);pointer-events:none}
+.box{text-align:center;padding:2rem;z-index:1;position:relative}
+.icon{font-size:3.5rem;margin-bottom:1.5rem;display:block;animation:float 3s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(255,160,50,0.6))}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.card{background:#16161f;border:1px solid #2a2a3a;border-radius:16px;padding:1.8rem 2.5rem;display:inline-block;position:relative;transform:perspective(800px) rotateX(4deg);box-shadow:0 20px 60px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.05);transition:transform 0.3s,box-shadow 0.3s}
+.card:hover{transform:perspective(800px) rotateX(0deg) translateY(-4px);box-shadow:0 30px 80px rgba(0,0,0,0.7),0 0 30px rgba(124,110,255,0.12)}
+.card::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(124,110,255,0.6),transparent)}
+.msg{font-family:monospace;font-size:1.15rem}
+.k{color:#a78bfa}.c{color:#6b6b8a}.v{color:#34d399}
+.dot{display:inline-block;width:9px;height:9px;background:#34d399;border-radius:50%;margin-right:7px;vertical-align:middle;animation:pulse 2s infinite;box-shadow:0 0 8px rgba(52,211,153,0.6)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.links{margin-top:1.8rem;display:flex;gap:10px;justify-content:center}
+.lnk{font-size:13px;font-family:monospace;color:#6b6b8a;text-decoration:none;padding:8px 18px;border:1px solid #2a2a3a;border-radius:100px;background:#0f0f18;transition:all 0.2s}
+.lnk:hover{color:#a78bfa;border-color:rgba(124,110,255,0.5);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.3)}
+</style>
+</head>
+<body>
+<div class="box">
+  <span class="icon">&#9889;</span>
+  <div class="card">
+    <div class="msg">
+      <span class="k">"message"</span><span class="c">: </span><span class="v">"<span class="dot"></span>URL Shortener is running &#9989;"</span>
+    </div>
+    <div class="links">
+      <a class="lnk" href="/docs">API Docs &#8594;</a>
+      <a class="lnk" href="/health">Health Check &#8594;</a>
+    </div>
+  </div>
+</div>
+<script>
+var card = document.querySelector('.card');
+card.addEventListener('mousemove', function(e) {
+  var r = this.getBoundingClientRect();
+  var x = (e.clientX - r.left) / r.width - 0.5;
+  var y = (e.clientY - r.top) / r.height - 0.5;
+  this.style.transform = 'perspective(800px) rotateX('+(-y*10)+'deg) rotateY('+(x*10)+'deg) translateY(-4px)';
+});
+card.addEventListener('mouseleave', function() {
+  this.style.transform = 'perspective(800px) rotateX(4deg)';
+});
+</script>
+</body>
+</html>

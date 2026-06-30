@@ -1,0 +1,2 @@
+ALTER USER admin WITH PASSWORD 'admin123';
+GRANT ALL PRIVILEGES ON DATABASE urlshortener TO admin;
